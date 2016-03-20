@@ -26,11 +26,12 @@ Java Service:
 * cd java-services
 * mvn package
 * java -jar target/stockinfo-0.1.jar server stockinfo.yml
-* http://localhost:8080/company?name=ABC
+* Sample URL: http://localhost:8080/company?name=ABC
 
 Ember Frontend
 * cd ember-stockinfo
-* ember s
+* ember server --proxy http://localhost:8080
+	* or wherever your Java service has been deployed
 * http://localhost:4200
 
 
