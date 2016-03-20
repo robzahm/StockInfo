@@ -25,10 +25,12 @@ Database:
 Java Service:
 * cd java-services
 * mvn package
+* Update YAML file with your DB connection info
 * java -jar target/stockinfo-0.1.jar server stockinfo.yml
 * Sample URL: http://localhost:8080/company?name=ABC
 
 Ember Frontend
+* bower install amcharts3
 * cd ember-stockinfo
 * ember server --proxy http://localhost:8080
 	* or wherever your Java service has been deployed
