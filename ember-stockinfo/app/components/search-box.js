@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	searchbox: null,
+	searchbox: null, /* Do I need these? */
 	resultList: null,
 	actions: {
 	    searchBoxAutoComplete() {
