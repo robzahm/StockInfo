@@ -23,7 +23,7 @@ public class StockQuote {
 	
 	@JsonProperty
 	public String getId() {
-		return symbol;
+		return symbol + "_" + date;
 	}
 
 	@JsonProperty
