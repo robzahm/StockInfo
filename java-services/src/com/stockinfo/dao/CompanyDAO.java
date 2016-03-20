@@ -13,6 +13,7 @@ import com.stockinfo.api.Company;
 public interface CompanyDAO {
 	// TODO: Limit results
 	// TODO: Order to name asc
+	// TODO: Add exchange
 	@SqlQuery("select id, symbol, name from companies where name like :name")
 	List<Company> findByName(@Bind("name") String name);
 	

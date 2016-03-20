@@ -11,21 +11,22 @@ import javax.ws.rs.core.MediaType;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.stockinfo.api.Company;
+import com.stockinfo.api.CompanyWrapper;
 import com.stockinfo.dao.CompanyDAO;
 
-// TODO: Refactor the name
-@Path("/company")
+@Path("/companies")
 @Produces(MediaType.APPLICATION_JSON)
-public class StockInfoResource {
+public class CompanyResource {
+	
 	private CompanyDAO companyDao;
 	
-	public StockInfoResource(CompanyDAO companyDao) {
+	public CompanyResource(CompanyDAO companyDao) {
 		this.companyDao = companyDao;
 	}
 	
 	@GET
 	@Timed
-	public List<Company> findCompanies(@QueryParam("name") Optional<String> name) {
+	public CompanyWrapper findCompanies(@QueryParam("name") Optional<String> name) {
 		// Ensure that we have a name passed in
 		String theName = null;
 		if (name.isPresent()) {
@@ -35,6 +36,8 @@ public class StockInfoResource {
 		// Execute the query and return
 		// TODO: Move the like param into the DAO
 		//return companyDao.findByName(theName + "%");
-		return companyDao.findByName("%");
+		List<Company> companies = companyDao.findByName("%");
+		CompanyWrapper response = new CompanyWrapper(companies);
+		return response;
     }
 }

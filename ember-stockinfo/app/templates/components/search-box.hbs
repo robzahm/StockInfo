@@ -1,0 +1,9 @@
+Enter a company name:
+{{input value=searchbox key-up=(action 'autoComplete' searchbox)}}
+<button {{action 'search'}}>Search</button>
+
+<ul>
+{{#each resultList as |item|}}
+  <li {{action 'choose' item.symbol}}>{{item.symbol}} | {{item.name}}</li>
+{{/each}}
+</ul>

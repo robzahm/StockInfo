@@ -1,4 +1,4 @@
 <div class="container">
-	Enter a company name: {{input value=companyInput}}
-	<button {{action 'search'}}>Search</button>
+	{{search-box resultList=resultList
+	autoComplete=(action 'autoComplete') search=(action 'search')}}
 </div>
