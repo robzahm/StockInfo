@@ -11,7 +11,7 @@ public class StockQuoteWrapper {
 		this.stockQuotes = stockQuotes;
 	}
 	
-	@JsonProperty
+	@JsonProperty("quotes")
 	public List<StockQuote> getStockQuotes(){
 		return stockQuotes;
 	}

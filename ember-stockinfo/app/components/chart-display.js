@@ -67,5 +67,13 @@ var chartData = [{
 });
 
 export default Ember.Component.extend({
-
+	symbol: null,
+	actions: {
+	    chartButtonClicked() {
+	    	console.log("Component.chartButtonClicked");
+	    	//this.store.query('quote');
+		    //this.get('quoteSearch');
+		    this.get('dataLoadFunction')(this.get('test123'));
+	  	}
+	}
 });
