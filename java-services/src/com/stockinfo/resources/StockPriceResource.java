@@ -3,6 +3,7 @@ package com.stockinfo.resources;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -16,6 +17,9 @@ import org.apache.http.client.methods.HttpGet;
 
 import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stockinfo.api.StockQuote;
+import com.stockinfo.api.StockQuoteWrapper;
+import com.stockinfo.yahoo.model.Quote;
 import com.stockinfo.yahoo.model.Wrapper;
 
 @Path("/quotes")
@@ -30,7 +34,12 @@ public class StockPriceResource {
 	
 	@GET
 	@Timed
-	public String findCompaniesByName(@QueryParam("name") String name) {
+	public StockQuoteWrapper findCompaniesByName(@QueryParam("name") String name) {
+		
+		// TODO: Refactor - pull all Yahoo references into a single location
+		// TODO: Build out the dates
+		
+		StockQuoteWrapper wrapper = null;
 		String strYaho = "";
 		try
 		{
@@ -58,14 +67,27 @@ public class StockPriceResource {
 			System.out.println(strYaho);
 			
 			ObjectMapper mapper = new ObjectMapper();
-			Wrapper yahooQuery = mapper.readValue(strYaho, Wrapper.class);
-			System.out.println(yahooQuery);
+			Wrapper yahooWrapper = mapper.readValue(strYaho, Wrapper.class);
+			System.out.println(yahooWrapper);
+			
+			ArrayList respList = new ArrayList<StockQuote>(yahooWrapper.query.results.quote.length);
+			
+			// Build server response objects
+			for (int i = 0; i < yahooWrapper.query.results.quote.length; i++) {
+				Quote yahooQuote =  yahooWrapper.query.results.quote[i];
+				StockQuote quote = new StockQuote(yahooQuote.symbol, yahooQuote.date, yahooQuote.open,
+						yahooQuote.high, yahooQuote.low, yahooQuote.close);
+				
+				respList.add(quote);
+			}
+			
+			wrapper = new StockQuoteWrapper(respList);
 			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return strYaho;
+		return wrapper;
     }
 }

@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class StockQuote {
 	private String symbol;
-	private Date date;
+	private String date;
 	private double open;
 	private double high;
 	private double low;
 	private double close;
 	
-	public StockQuote(String symbol, Date date, double open, double high, double low, double close) {
+	public StockQuote(String symbol, String date, double open, double high, double low, double close) {
 		super();
 		this.symbol = symbol;
 		this.date = date;
@@ -28,7 +28,7 @@ public class StockQuote {
 	}
 
 	@JsonProperty
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
