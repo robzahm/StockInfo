@@ -12,7 +12,28 @@ You will need the following things properly installed on your computer.
 * [Bower](http://bower.io/)
 * [Ember CLI](http://www.ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
-* [MySQL] (http://dev.mysql.com/)
+* [MySQL](http://dev.mysql.com/)
+* [Maven]
+
+## Server Component Setup
+
+Database:
+* Install MySQL Community Edition
+* Create a new schema, and execute the DDL found in the "data" folder
+
+Java Service:
+* cd java-services
+* mvn package
+* java -jar target/stockinfo-0.1.jar server
+* http://localhost:8080/company?name=ABC
+
+
+
+
+
+
+
+
 
 ## Installation
 

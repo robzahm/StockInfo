@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("/find-companies")
+@Path("/company")
 @Produces(MediaType.APPLICATION_JSON)
 public class StockInfoResource {
 	
@@ -21,6 +21,10 @@ public class StockInfoResource {
 	@GET
 	@Timed
 	public Company findCompanies(@QueryParam("name") Optional<String> name) {
-        return new Company(1, "AAA", "Ambitious Apple Associates");
+		String theName = null;
+		if (name.isPresent()) {
+			theName = name.get();
+		}
+		return new Company(1, "AAA", theName);
     }
 }
