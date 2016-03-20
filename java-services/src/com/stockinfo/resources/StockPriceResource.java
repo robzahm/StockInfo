@@ -10,12 +10,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 
 import com.codahale.metrics.annotation.Timed;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stockinfo.yahoo.model.Wrapper;
 
 @Path("/quotes")
 @Produces(MediaType.APPLICATION_JSON)
@@ -30,6 +31,7 @@ public class StockPriceResource {
 	@GET
 	@Timed
 	public String findCompaniesByName(@QueryParam("name") String name) {
+		String strYaho = "";
 		try
 		{
 			String query = "select * from yahoo.finance.historicaldata where symbol = \"YHOO\" and startDate = \"2016-03-01\" and endDate = \"2016-03-10\"";
@@ -49,15 +51,21 @@ public class StockPriceResource {
 			
 			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent())); 
 			String line = "";
-			String strYaho = "";
+			
 			while ((line = rd.readLine()) != null) {
 				strYaho = strYaho + line;
 			} 
 			System.out.println(strYaho);
+			
+			ObjectMapper mapper = new ObjectMapper();
+			Wrapper yahooQuery = mapper.readValue(strYaho, Wrapper.class);
+			System.out.println(yahooQuery);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "Quotes";
+		return strYaho;
     }
 }
