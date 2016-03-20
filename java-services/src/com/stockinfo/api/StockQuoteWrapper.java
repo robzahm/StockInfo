@@ -1,0 +1,18 @@
+package com.stockinfo.api;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class StockQuoteWrapper {
+	private final List<StockQuote> stockQuotes;
+	
+	public StockQuoteWrapper(List<StockQuote> stockQuotes) {
+		this.stockQuotes = stockQuotes;
+	}
+	
+	@JsonProperty
+	public List<StockQuote> getStockQuotes(){
+		return stockQuotes;
+	}
+}

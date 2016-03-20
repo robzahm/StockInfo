@@ -5,14 +5,17 @@ import java.util.EnumSet;
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 
+import org.apache.http.client.HttpClient;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.skife.jdbi.v2.DBI;
 
 import com.stockinfo.dao.CompanyDAO;
 import com.stockinfo.health.CompanyHealthCheck;
 import com.stockinfo.resources.CompanyResource;
+import com.stockinfo.resources.StockPriceResource;
 
 import io.dropwizard.Application;
+import io.dropwizard.client.HttpClientBuilder;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -61,5 +64,9 @@ public class StockInfoApplication extends Application<StockInfoConfiguration> {
         // Create and register the health checks
         final CompanyHealthCheck healthCheck = new CompanyHealthCheck();
         environment.healthChecks().register("company", healthCheck);
+        
+        // HTTP Client Configuration and registration
+        final HttpClient httpClient = new HttpClientBuilder(environment).using(configuration.getHttpClientConfiguration()).build("example-http-client");
+        environment.jersey().register(new StockPriceResource(httpClient));
     }
 }
