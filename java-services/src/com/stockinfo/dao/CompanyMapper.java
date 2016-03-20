@@ -8,6 +8,7 @@ import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
 import com.stockinfo.api.Company;
 
+// TODO: Place in a separate package
 public class CompanyMapper implements ResultSetMapper<Company>
 {
   public Company map(int index, ResultSet r, StatementContext ctx) throws SQLException

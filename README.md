@@ -13,21 +13,25 @@ You will need the following things properly installed on your computer.
 * [Ember CLI](http://www.ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
 * [MySQL](http://dev.mysql.com/)
-* [Maven]
+* [Maven](https://maven.apache.org/)
 
-## Server Component Setup
+## Execution Notes
 
 Database:
 * Install MySQL Community Edition
 * Create a new schema, and execute the DDL found in the "data" folder
+* TODO: Execute the CSV import script
 
 Java Service:
 * cd java-services
 * mvn package
-* java -jar target/stockinfo-0.1.jar server
+* java -jar target/stockinfo-0.1.jar server stockinfo.yml
 * http://localhost:8080/company?name=ABC
 
-
+Ember Frontend
+* cd ember-stockinfo
+* ember s
+* http://localhost:4200
 
 
 

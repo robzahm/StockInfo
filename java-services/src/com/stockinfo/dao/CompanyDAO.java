@@ -11,14 +11,15 @@ import com.stockinfo.api.Company;
 
 @RegisterMapper(CompanyMapper.class)
 public interface CompanyDAO {
-
-	  @SqlQuery("select id, symbol, name from companies where name like :name")
-	  List<Company> findByName(@Bind("name") String name);
-	  
-	  @SqlQuery("select name from companies where id = :id")
-	  String findNameById(@Bind("id") int id);
-	  
-	  @SqlQuery("select id, symbol, name from companies where id = :id")
-	  Company findById(@Bind("id") int id);
+	// TODO: Limit results
+	// TODO: Order to name asc
+	@SqlQuery("select id, symbol, name from companies where name like :name")
+	List<Company> findByName(@Bind("name") String name);
+	
+	@SqlQuery("select name from companies where id = :id")
+	String findNameById(@Bind("id") int id);
+	
+	@SqlQuery("select id, symbol, name from companies where id = :id")
+	Company findById(@Bind("id") int id);
 }
 

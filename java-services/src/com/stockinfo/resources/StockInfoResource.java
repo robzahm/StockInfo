@@ -13,6 +13,7 @@ import com.google.common.base.Optional;
 import com.stockinfo.api.Company;
 import com.stockinfo.dao.CompanyDAO;
 
+// TODO: Refactor the name
 @Path("/company")
 @Produces(MediaType.APPLICATION_JSON)
 public class StockInfoResource {
@@ -25,24 +26,14 @@ public class StockInfoResource {
 	@GET
 	@Timed
 	public List<Company> findCompanies(@QueryParam("name") Optional<String> name) {
-		System.out.println("Find Companies");
+		// Ensure that we have a name passed in
 		String theName = null;
 		if (name.isPresent()) {
 			theName = name.get();
 		}
 		
-		
-		String fullName = companyDao.findNameById(2);
-		//return new Company(1, "AAA", fullName);
-		
-		Company fullCompany = companyDao.findById(2);
-		//return fullCompany;
-		
-		List<Company> companies = companyDao.findByName(theName + "%");
-		return companies;
-		
-		//Iterator<Company> companies = companyDao.findByName(theName);
-		//return companies.next();
-		//return new Company(1, "AAA", theName);
+		// Execute the query and return
+		// TODO: Move the like param into the DAO
+		return companyDao.findByName(theName + "%");
     }
 }
