@@ -20,6 +20,11 @@ public class StockQuote {
 		this.low = low;
 		this.close = close;
 	}
+	
+	@JsonProperty
+	public String getId() {
+		return symbol;
+	}
 
 	@JsonProperty
 	public String getSymbol() {

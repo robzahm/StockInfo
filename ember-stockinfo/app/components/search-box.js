@@ -10,6 +10,7 @@ export default Ember.Component.extend({
 	    choose(company) {
 	      this.set('searchbox', company);
 	      this.set('resultList', null);
+	      this.get('companySelectFunction')(this.get('searchbox'));
 	    }
 	}
 });

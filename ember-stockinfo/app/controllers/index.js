@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
       console.log("Index.quoteSearch");
       if(param !== "") {
         this.store.query('quote', {symbol: param}).then((result) => {
-          //alert(result);
+          this.set('resultList',result);
         });
       }
     }
