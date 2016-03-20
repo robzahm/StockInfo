@@ -7,9 +7,6 @@ export default Ember.Component.extend({
 	    autoComplete() {
 	      this.get('autoComplete')(this.get('searchbox'));
 	    },
-	    search() {
-	      this.get('search')(this.get('searchbox'));
-	    },
 	    choose(company) {
 	      this.set('searchbox', company);
 	    }

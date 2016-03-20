@@ -11,7 +11,6 @@ import org.skife.jdbi.v2.DBI;
 import com.stockinfo.dao.CompanyDAO;
 import com.stockinfo.health.CompanyHealthCheck;
 import com.stockinfo.resources.CompanyResource;
-import com.stockinfo.resources.StockInfoResource;
 
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
@@ -54,12 +53,8 @@ public class StockInfoApplication extends Application<StockInfoConfiguration> {
 	    
 	    // Create and register the DAO
 	    final CompanyDAO dao = jdbi.onDemand(CompanyDAO.class);
-	    environment.jersey().register(new StockInfoResource(dao));
     	
 	    // Create an register the resource endpoints
-        final StockInfoResource resource = new StockInfoResource(dao);
-        environment.jersey().register(resource);
-        
         final CompanyResource companyResource = new CompanyResource(dao);
         environment.jersey().register(companyResource);
         

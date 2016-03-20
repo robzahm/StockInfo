@@ -9,7 +9,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.codahale.metrics.annotation.Timed;
-import com.google.common.base.Optional;
 import com.stockinfo.api.Company;
 import com.stockinfo.api.CompanyWrapper;
 import com.stockinfo.dao.CompanyDAO;
@@ -26,17 +25,10 @@ public class CompanyResource {
 	
 	@GET
 	@Timed
-	public CompanyWrapper findCompanies(@QueryParam("name") Optional<String> name) {
-		// Ensure that we have a name passed in
-		String theName = null;
-		if (name.isPresent()) {
-			theName = name.get();
-		}
-		
-		// Execute the query and return
-		// TODO: Move the like param into the DAO
-		//return companyDao.findByName(theName + "%");
-		List<Company> companies = companyDao.findByName("%");
+	public CompanyWrapper findCompaniesByName(@QueryParam("name") String name) {
+		// TODO: Require a minimum number of characters
+		// Execute the query and return the list wrapper
+		List<Company> companies = companyDao.findByName(name);
 		CompanyWrapper response = new CompanyWrapper(companies);
 		return response;
     }
