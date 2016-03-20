@@ -2,23 +2,8 @@ Enter a company name:
 {{input value=searchbox key-up=(action 'autoComplete' searchbox)}}
 <br/>
 
-{{#if resultList.length}}
-<div class="table-responsive" style="width:400px; height:100px;">
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th>Company Name</th>
-	      <th>Symbol</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-			{{#each resultList as |item|}}
-				<tr {{action 'choose' item.symbol}}>
-					<td>{{item.name}}</td>
-					<td>{{item.symbol}}</td>
-				</tr>
-			{{/each}}
-	  </tbody>
-	</table>
-</div>
-{{/if}}
+<ul class="list-group" style="width:400px;">
+	{{#each resultList as |item|}}
+		<li class="list-group-item" {{action 'choose' item.symbol}}> {{item.symbol}} | {{item.name}}</li>
+	{{/each}}
+</ul>
