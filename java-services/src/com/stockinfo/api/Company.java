@@ -1,7 +1,8 @@
 package com.stockinfo.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Company {
 	private int id;
