@@ -1,35 +1,5 @@
 import Ember from 'ember';
-/*
-var chartData = [{
-    "symbol":"YHOO",
-    "date": "2016-03-10",
-    "averagePrice": 4252
-  }, {
-    "symbol":"YHOO",
-    "date": "2016-03-11",
-    "averagePrice": 1882
-  }, {
-    "symbol":"YHOO",
-    "date": "2016-03-12",
-    "averagePrice": 1809
-  }, {
-    "symbol":"YHOO",
-    "date": "2016-03-13",
-    "averagePrice": 1322
-  }, {
-    "symbol":"YHOO",
-    "date": "2016-03-14",
-    "averagePrice": 1122
-  }, {
-    "symbol":"YHOO",
-    "date": "2016-03-15",
-    "averagePrice": 1114
-  }, {
-    "symbol":"YHOO",
-    "date": "2016-03-16",
-    "averagePrice": 984
-  }];
-*/
+
 export default Ember.Controller.extend({
   actions: {
     executeCompanySearch(param) {
@@ -50,7 +20,7 @@ export default Ember.Controller.extend({
           var resultArray = result.toArray();
           var pojoResultArray = JSON.parse(JSON.stringify(resultArray));
 
-          console.log("Result Array: " + JSON.stringify(resultArray));
+          //console.log("Result Array: " + JSON.stringify(resultArray));
 
           var chart = new AmCharts.AmSerialChart();
           chart.dataProvider = pojoResultArray;
@@ -58,11 +28,12 @@ export default Ember.Controller.extend({
 
           var categoryAxis = chart.categoryAxis;
           categoryAxis.labelFrequency = 2;
+          categoryAxis.title = "Date";
 
           var graph = new AmCharts.AmGraph();
           graph.valueField = "averagePrice";
           graph.type = "line";
-          graph.balloonText = "Average Price: <b>[[value]]</b>";
+          graph.balloonText = "[[category]]: <b>[[value]]</b>";
           graph.bullet = "round";
           chart.addGraph(graph);
           chart.write('chartdiv');
