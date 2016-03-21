@@ -1,9 +1,9 @@
 package com.stockinfo.model;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 public class StockQuote {
 	
@@ -12,10 +12,10 @@ public class StockQuote {
 	
 	private String symbol;
 	private String date;
-	private double open;
-	private double high;
-	private double low;
-	private double close;
+	private Double open;
+	private Double high;
+	private Double low;
+	private Double close;
 	
 	public StockQuote(String symbol, String date, double open, double high, double low, double close) {
 		super();
@@ -46,24 +46,25 @@ public class StockQuote {
 	public double getOpen() {
 		return open;
 	}
-
+	
 	@JsonProperty
 	public double getHigh() {
-		return high;
+		return new BigDecimal(high).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	@JsonProperty
 	public double getLow() {
-		return low;
+		return new BigDecimal(low).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	@JsonProperty
 	public double getClose() {
-		return close;
+		return new BigDecimal(close).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 	
 	@JsonProperty
 	public double getAveragePrice() {
-		return (open + high + low + close) / 4;
+		double average = (open + high + low + close) / 4;
+		return new BigDecimal(average).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 }
