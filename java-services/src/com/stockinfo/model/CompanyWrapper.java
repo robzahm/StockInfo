@@ -1,4 +1,4 @@
-package com.stockinfo.api;
+package com.stockinfo.model;
 
 import java.util.List;
 

@@ -9,9 +9,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.codahale.metrics.annotation.Timed;
-import com.stockinfo.api.Company;
-import com.stockinfo.api.CompanyWrapper;
 import com.stockinfo.dao.CompanyDAO;
+import com.stockinfo.model.Company;
+import com.stockinfo.model.CompanyWrapper;
 
 @Path("/companies")
 @Produces(MediaType.APPLICATION_JSON)

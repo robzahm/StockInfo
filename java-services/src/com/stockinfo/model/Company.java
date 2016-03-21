@@ -1,4 +1,4 @@
-package com.stockinfo.api;
+package com.stockinfo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

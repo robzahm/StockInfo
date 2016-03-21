@@ -7,7 +7,7 @@ import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
-import com.stockinfo.api.Company;
+import com.stockinfo.model.Company;
 
 @RegisterMapper(CompanyMapper.class)
 public interface CompanyDAO {

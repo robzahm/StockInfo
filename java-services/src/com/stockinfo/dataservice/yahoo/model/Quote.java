@@ -1,4 +1,4 @@
-package com.stockinfo.yahoo.model;
+package com.stockinfo.dataservice.yahoo.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

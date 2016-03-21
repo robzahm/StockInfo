@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
-import com.stockinfo.api.Company;
+import com.stockinfo.model.Company;
 
 // TODO: Place in a separate package
 public class CompanyMapper implements ResultSetMapper<Company>
