@@ -96,7 +96,9 @@ public class StockPriceResource {
 				StockQuote quote = new StockQuote(yahooQuote.symbol, yahooQuote.date, yahooQuote.open,
 						yahooQuote.high, yahooQuote.low, yahooQuote.close);
 				
-				respList.add(quote);
+				// Add to the beginning so that the oldest data is first
+				// TODO: Sort by date instead for a more robust solution
+				respList.add(0, quote);
 			}
 			
 			wrapper = new StockQuoteWrapper(respList);

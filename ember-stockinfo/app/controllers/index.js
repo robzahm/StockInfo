@@ -55,6 +55,10 @@ export default Ember.Controller.extend({
           var chart = new AmCharts.AmSerialChart();
           chart.dataProvider = pojoResultArray;
           chart.categoryField = "date";
+
+          var categoryAxis = chart.categoryAxis;
+          categoryAxis.labelFrequency = 2;
+
           var graph = new AmCharts.AmGraph();
           graph.valueField = "averagePrice";
           graph.type = "line";
