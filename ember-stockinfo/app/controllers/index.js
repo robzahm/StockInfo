@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+/*
 var chartData = [{
     "symbol":"YHOO",
     "date": "2016-03-10",
@@ -29,7 +29,7 @@ var chartData = [{
     "date": "2016-03-16",
     "averagePrice": 984
   }];
-
+*/
 export default Ember.Controller.extend({
   actions: {
     executeCompanySearch(param) {
@@ -58,6 +58,8 @@ export default Ember.Controller.extend({
           var graph = new AmCharts.AmGraph();
           graph.valueField = "averagePrice";
           graph.type = "line";
+          graph.balloonText = "Average Price: <b>[[value]]</b>";
+          graph.bullet = "round";
           chart.addGraph(graph);
           chart.write('chartdiv');
 
