@@ -3,7 +3,10 @@ package com.stockinfo.resources;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,6 +29,9 @@ import com.stockinfo.yahoo.model.Wrapper;
 @Produces(MediaType.APPLICATION_JSON)
 public class StockPriceResource {
 	
+	// Could put in an app-wide utils class
+	
+	
 	private HttpClient httpClient;
 	
 	public StockPriceResource(HttpClient httpClient) {
@@ -34,7 +40,7 @@ public class StockPriceResource {
 	
 	@GET
 	@Timed
-	public StockQuoteWrapper findCompaniesByName(@QueryParam("name") String name) {
+	public StockQuoteWrapper findCompaniesByName(@QueryParam("symbol") String symbol) {
 		
 		// TODO: Refactor - pull all Yahoo references into a single location
 		// TODO: Build out the dates
@@ -43,7 +49,19 @@ public class StockPriceResource {
 		String strYaho = "";
 		try
 		{
-			String query = "select * from yahoo.finance.historicaldata where symbol = \"YHOO\" and startDate = \"2016-03-01\" and endDate = \"2016-03-10\"";
+			// Get objects for the current date, and the date 30 days ago
+			SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+			Date currentDate = new Date();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(currentDate);
+			cal.add(Calendar.DATE, -30);
+			Date thirtyDaysAgo = cal.getTime();
+			
+			// Build the Yahoo query with the correct inputs
+			String query = String.format(
+					"select * from yahoo.finance.historicaldata where symbol = \"%s\" and startDate = \"%s\" and endDate = \"%s\"",
+					symbol, dateFormatter.format(thirtyDaysAgo), dateFormatter.format(currentDate));
+			
 			String encodedQuery = URLEncoder.encode(query, "UTF-8");
 			encodedQuery = encodedQuery.replace("+", "%20");
 			

@@ -7,6 +7,10 @@ CREATE TABLE `stockInfo`.`companies` (
   UNIQUE INDEX `symbol_UNIQUE` (`symbol` ASC));
 */
 
+
+-- I would normally include a numeric PK, but this caused
+-- issues with the mysqlimport tool.  Rather than find another
+-- workaround for this, I omitted the PK for the purposes of this exercise
 CREATE TABLE `stockInfo`.`company` (
   `symbol` VARCHAR(10) NOT NULL,
   `name` VARCHAR(255) NOT NULL);
