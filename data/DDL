@@ -11,6 +11,9 @@ CREATE TABLE `stockInfo`.`companies` (
 -- I would normally include a numeric PK, but this caused
 -- issues with the mysqlimport tool.  Rather than find another
 -- workaround for this, I omitted the PK for the purposes of this exercise
+-- The symbol size should also be 5, but some of the symbols have carats.
+-- A more robust solution that mysqlimport would be required to keep these
+-- out of the database, so they are removed in the query layer instead.
 CREATE TABLE `stockInfo`.`company` (
   `symbol` VARCHAR(10) NOT NULL,
   `name` VARCHAR(255) NOT NULL);
