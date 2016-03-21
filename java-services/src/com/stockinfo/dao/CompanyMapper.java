@@ -13,6 +13,6 @@ public class CompanyMapper implements ResultSetMapper<Company>
 {
   public Company map(int index, ResultSet r, StatementContext ctx) throws SQLException
   {
-    return new Company(r.getInt("id"), r.getString("symbol"), r.getString("name"));
+    return new Company(r.getString("symbol"), r.getString("name"));
   }
 }

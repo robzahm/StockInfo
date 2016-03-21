@@ -1,0 +1,9 @@
+-- Import all data
+/usr/local/mysql/bin/mysqlimport --fields-terminated-by=, --fields-enclosed-by='"' --ignore-lines=1 --user root --password stockInfo /Users/zahm/github/StockInfo/data/company.csv1 /Users/zahm/github/StockInfo/data/company.csv2 /Users/zahm/github/StockInfo/data/company.csv3
+
+-- Individual import scripts
+/usr/local/mysql/bin/mysqlimport --fields-terminated-by=, --fields-enclosed-by='"' --ignore-lines=1 --user root --password stockInfo /Users/zahm/github/StockInfo/data/company.csv1
+/usr/local/mysql/bin/mysqlimport --fields-terminated-by=, --fields-enclosed-by='"' --ignore-lines=1 --user root --password stockInfo /Users/zahm/github/StockInfo/data/company.csv2
+/usr/local/mysql/bin/mysqlimport --fields-terminated-by=, --fields-enclosed-by='"' --ignore-lines=1 --user root --password stockInfo /Users/zahm/github/StockInfo/data/company.csv3
+
+-- There are some duplicate symbols, and other character isues with some symbols from the CSV

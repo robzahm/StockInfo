@@ -1,8 +1,9 @@
 <div class="container">
-	{{search-box resultList=resultList
-	autoComplete=(action 'autoComplete')}}
+	{{search-box resultList=resultList quoteList=quoteList
+	autoCompleteFunction=(action 'executeCompanySearch')
+	companySelectFunction=(action 'executeQuoteSearch')}}
 </div>
-
+<!--
 <div class="container">
-	{{chart-display}}
-</div>
+	{{chart-display dataLoadFunction=(action 'executeQuoteSearch')}}
+</div>-->
