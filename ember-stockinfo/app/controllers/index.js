@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
       console.log("Autocomplete");
       if(param !== "") {
       	this.store.query('company', { name: param}).then((result) => {
-      		this.set('resultList',result);
+          this.set('resultList',result);
       	});
       } else {
       	this.set('resultList', null);
