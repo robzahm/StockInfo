@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
+    // Execute the company search lookup
     executeCompanySearch(param) {
       // TODO: Require a minimum number of characters
       console.log("Autocomplete");
@@ -14,14 +15,14 @@ export default Ember.Controller.extend({
       	this.set('resultList', null);
       }
     },
+    // Execute the quote lookup
     executeQuoteSearch(param) {
       console.log("Index.quoteSearch");
       if(param !== "") {
         this.store.query('quote', {symbol: param}).then((result) => {
+          // Turn the array into a plain JS object for use by amCharts
           var resultArray = result.toArray();
           var pojoResultArray = JSON.parse(JSON.stringify(resultArray));
-
-          //console.log("Result Array: " + JSON.stringify(resultArray));
 
           var chart = new AmCharts.AmSerialChart();
           chart.dataProvider = pojoResultArray;
@@ -37,10 +38,9 @@ export default Ember.Controller.extend({
           graph.balloonText = "[[category]]: <b>[[value]]</b>";
           graph.bullet = "round";
           chart.addGraph(graph);
+
+          // Tightly coupled to the component name, look for a better solution
           chart.write('chartdiv');
-
-
-
         });
       }
     }
