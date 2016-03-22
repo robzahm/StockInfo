@@ -24,6 +24,7 @@ export default Ember.Controller.extend({
           var resultArray = result.toArray();
           var pojoResultArray = JSON.parse(JSON.stringify(resultArray));
 
+          // Build out the amChart
           var chart = new AmCharts.AmSerialChart();
           chart.dataProvider = pojoResultArray;
           chart.categoryField = "date";
