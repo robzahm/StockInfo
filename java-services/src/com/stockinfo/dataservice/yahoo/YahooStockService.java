@@ -18,6 +18,12 @@ import com.stockinfo.dataservice.yahoo.model.Wrapper;
 import com.stockinfo.model.StockQuote;
 import com.stockinfo.model.StockQuoteWrapper;
 
+/**
+ * This class provides an implementation that provides historical stock
+ * quotes from Yahoo
+ * @author zahm
+ *
+ */
 public class YahooStockService implements IHistoricalStockQuoteService {
 	
 	// Date format used by the Yahoo service
@@ -29,6 +35,9 @@ public class YahooStockService implements IHistoricalStockQuoteService {
 		this.httpClient = httpClient;
 	}
 	
+	/**
+	 * Implementation that get the stock price, and returns it in the application's model classes
+	 */
 	public StockQuoteWrapper getStockHistory(String symbol, Date start, Date end) throws Exception {
 		// Build the Yahoo query with the correct inputs
 		String query = String.format(

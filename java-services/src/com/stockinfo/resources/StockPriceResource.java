@@ -1,6 +1,5 @@
 package com.stockinfo.resources;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,18 +17,22 @@ import com.stockinfo.model.StockQuoteWrapper;
 @Produces(MediaType.APPLICATION_JSON)
 public class StockPriceResource {
 	
-	// Could put in an app-wide utils class
-	private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-	
 	private IHistoricalStockQuoteService historicalQuoteService;
 	
 	public StockPriceResource(IHistoricalStockQuoteService historicalQuoteService) {
 		this.historicalQuoteService = historicalQuoteService;
 	}
 	
+	/**
+	 * Return a list of historical quotes for a given stock symbol
+	 * If the symbol is not found, an Exception will be thrown up from this layer,
+	 * this could be imrpoved to return JSON-formatted error messages
+	 * @param symbol
+	 * @return
+	 */
 	@GET
 	@Timed
-	public StockQuoteWrapper findCompaniesByName(@QueryParam("symbol") String symbol) {
+	public StockQuoteWrapper getHistoricalQuotes(@QueryParam("symbol") String symbol) {
 		
 		StockQuoteWrapper wrapper = null;
 		try
@@ -46,6 +49,7 @@ public class StockPriceResource {
 			
 		} catch (Exception e) {
 			// TODO: Logging
+			// TODO: Respond with graceful error messages
 			e.printStackTrace();
 		}
 		

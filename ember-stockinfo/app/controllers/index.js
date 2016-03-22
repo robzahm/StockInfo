@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
       console.log("Autocomplete");
       if(param !== "") {
       	this.store.query('company', { name: param}).then((result) => {
+          // TODO: Handle the "No Results Found" case
           this.set('resultList',result);
       	});
       } else {

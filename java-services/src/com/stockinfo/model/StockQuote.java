@@ -1,14 +1,10 @@
 package com.stockinfo.model;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class StockQuote {
-	
-	// Round all quotes to 4 decimal places
-	private DecimalFormat dFormat = new DecimalFormat("#0.0000");
 	
 	private String symbol;
 	private String date;

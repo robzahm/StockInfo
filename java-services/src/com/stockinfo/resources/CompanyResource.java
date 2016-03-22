@@ -23,10 +23,16 @@ public class CompanyResource {
 		this.companyDao = companyDao;
 	}
 	
+	/**
+	 * Return a list of companies that are prefixed with the name parameter
+	 * @param name
+	 * @return
+	 */
 	@GET
 	@Timed
 	public CompanyWrapper findCompaniesByName(@QueryParam("name") String name) {
 		// TODO: Require a minimum number of characters
+		// TODO: Respond with graceful error messages
 		// Execute the query and return the list wrapper
 		List<Company> companies = companyDao.findByName(name);
 		CompanyWrapper response = new CompanyWrapper(companies);

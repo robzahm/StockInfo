@@ -9,6 +9,11 @@ import io.dropwizard.Configuration;
 import io.dropwizard.client.HttpClientConfiguration;
 import io.dropwizard.db.DataSourceFactory;
 
+/**
+ * Application configuration
+ * @author zahm
+ *
+ */
 public class StockInfoConfiguration extends Configuration {
 	
 	// Data Source

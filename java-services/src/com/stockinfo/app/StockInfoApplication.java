@@ -22,6 +22,11 @@ import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
+/**
+ * Application class responsible for initialization & registration
+ * @author zahm
+ *
+ */
 public class StockInfoApplication extends Application<StockInfoConfiguration> {
 	public static void main(String[] args) throws Exception {
 		new StockInfoApplication().run(args);
