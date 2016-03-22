@@ -4,7 +4,9 @@ export default DS.RESTAdapter.extend({
 	host: 'http://localhost:8080',
 	handleResponse: function(status, headers, payload){
     if(status !== 200){
-      alert("An error has occurred, please try again later");
+      // Adapter error handling here
+      // Improve this
+      alert("An error occurred from the server with HTTP code: " + status + " and message: " + payload.message);
     }
     return this._super(...arguments);
   }
