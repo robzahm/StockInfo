@@ -28,7 +28,6 @@ Database:
 
 Java Service:
 * change into the java-services directory
-* 'mvn install'
 * 'mvn package'
 * Update YML file with your database connection info
 
@@ -40,10 +39,12 @@ Ember Frontend
 ## Start the Services
 
 Start the Java server:
+* change into the java-services directory
 * Start the Java server (DropWizard): 'java -jar target/stockinfo-0.1.jar server stockinfo.yml'
 * Sample URL: http://localhost:8080/companies?name=App
 
 Start the Ember server:
+* change into the ember-stockinfo directory
 * 'ember server --proxy http://localhost:8080'
 
 Access the application at [http://localhost:4200]http://localhost:4200.
