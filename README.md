@@ -1,7 +1,6 @@
 # Ember-stockinfo
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This README outlines the details of installing and executing this Ember-Java DropWizard-MySQL application
 
 ## Prerequisites
 
@@ -18,7 +17,7 @@ You will need the following things properly installed on your computer.
 ## Build and Installation Notes
 
 * `git clone <repository-url>` this repository
-* change into the new directory
+* Change into the new directory
 
 Database:
 * Install MySQL Community Edition
@@ -27,24 +26,24 @@ Database:
 * Note that MySQL needs read permissions to each folder level in order to read the file and import it, otherwise a permission error will be returned.
 
 Java Service:
-* change into the java-services directory
+* Change into the java-services directory
 * 'mvn package'
-* Update YML file with your database connection info
+* Update the YML file with your database connection info
 
 Ember Frontend
-* change into the ember-stockinfo directory
+* Change into the ember-stockinfo directory
 * 'npm install'
 * 'bower install'
 
 ## Start the Services
 
 Start the Java server:
-* change into the java-services directory
+* Change into the java-services directory
 * Start the Java server (DropWizard): 'java -jar target/stockinfo-0.1.jar server stockinfo.yml'
 * Sample URL: http://localhost:8080/companies?name=App
 
 Start the Ember server:
-* change into the ember-stockinfo directory
+* Change into the ember-stockinfo directory
 * 'ember server --proxy http://localhost:8080'
 
-Access the application at [http://localhost:4200]http://localhost:4200.
+Access the application at [http://localhost:4200](http://localhost:4200).
