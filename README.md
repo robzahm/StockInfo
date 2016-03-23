@@ -15,19 +15,18 @@ You will need the following things properly installed on your computer.
 * [MySQL](http://dev.mysql.com/)
 * [Maven](https://maven.apache.org/)
 
-## Execution Notes
+## Installation Notes
 
 Database:
 * Install MySQL Community Edition
-* Create a new schema, and execute the DDL found in the "data" folder
-* TODO: Execute the CSV import script
+* Execute the importData.sh script in the data folder, passing in the username and password of an admin user with 'create database' privileges.  This will create the schema and table, and load it with data from the CSVs.
 
 Java Service:
 * cd java-services
 * mvn package
-* Update YAML file with your DB connection info
-* java -jar target/stockinfo-0.1.jar server stockinfo.yml
-* Sample URL: http://localhost:8080/company?name=ABC
+* Update YAML file with your database connection info
+* Start the Java server (DropWizard): java -jar target/stockinfo-0.1.jar server stockinfo.yml
+* Sample URL: http://localhost:8080/companies?name=App
 
 Ember Frontend
 * bower install amcharts3
