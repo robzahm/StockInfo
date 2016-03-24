@@ -42,8 +42,17 @@ export default Ember.Controller.extend({
       // TODO: Require a minimum number of characters
       if(param !== "") {
       	this.store.query('company', { name: param}).then((result) => {
-          // TODO: Handle the "No Results Found" case
+          // Set the list for display in the component template
           this.set('resultList',result);
+
+          // Determine if no results were found, and it so, set the component property
+          var resultArray = result.toArray();
+          var pojoResultArray = JSON.parse(JSON.stringify(resultArray));
+          console.log(pojoResultArray.length);
+          if (pojoResultArray.length == 0)
+            this.set('noResultsFound', true);
+          else
+            this.set('noResultsFound', false);
       	});
       } else {
       	this.set('resultList', null);
@@ -51,7 +60,6 @@ export default Ember.Controller.extend({
     },
     // Execute the quote lookup
     executeQuoteSearch(param) {
-      // TODO: Move to component layer
       if(param !== "") {
         this.store.query('quote', {symbol: param}).then((result) => {
           // Turn the array into a plain JS object for use by amCharts

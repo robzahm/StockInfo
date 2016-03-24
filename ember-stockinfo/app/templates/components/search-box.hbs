@@ -6,6 +6,9 @@ Enter a company name:
 	{{#each resultList as |item|}}
 		<li class="list-group-item" {{action 'choose' item.symbol}}> {{item.symbol}} | {{item.name}}</li>
 	{{/each}}
+	{{#if noResultsFound}}
+		<li class="list-group-item">Sorry, no companies found</li>
+	{{/if}}
 </ul>
 
 <!-- amCharts display -->
