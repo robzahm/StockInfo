@@ -2,19 +2,37 @@ import Ember from 'ember';
 var chartConfig = {
             type: "serial",
             categoryField: "date",
+            dataDateFormat:"YYYY-MM-DD",
             categoryAxis: {
               labelFrequency: 2,
-              title: "Date"
+              title: "Date",
+              parseDates: true
             },
             valueAxes: [{
-              title: "Average Price"
+              title: "Open/Close/Low/High"
             }],
             graphs: [{
-              valueField: "averagePrice",
+              closeField: "close",
+              openField: "open",
+              lowField: "low",
+              highField: "high",
+              valueField: "close",
               type: "line",
-              balloonText: "[[category]]: <b>[[value]]</b>",
-              bullet: "round"
-            }]
+              balloonText: "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+              bullet: "round",
+              type: "candlestick",
+              fillColors: "#da6d2e",
+              lineColor: "#da6d2e",
+              lineAlpha: 1,
+              fillAlphas: 0.9,
+              negativeFillColors: "#7f8da9",
+              negativeLineColor: "#7f8da9",
+            }],
+            chartCursor: {
+              valueLineEnabled: true,
+              valueLineBalloonEnabled: true,
+              zoomable: false
+            }
           };
 
 export default Ember.Controller.extend({

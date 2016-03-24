@@ -40,7 +40,7 @@ public class StockQuote {
 
 	@JsonProperty
 	public double getOpen() {
-		return open;
+		return new BigDecimal(open).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 	
 	@JsonProperty
