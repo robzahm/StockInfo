@@ -40,7 +40,6 @@ export default Ember.Controller.extend({
     // Execute the company search lookup
     executeCompanySearch(param) {
       // TODO: Require a minimum number of characters
-      console.log("Autocomplete");
       if(param !== "") {
       	this.store.query('company', { name: param}).then((result) => {
           // TODO: Handle the "No Results Found" case
@@ -52,12 +51,13 @@ export default Ember.Controller.extend({
     },
     // Execute the quote lookup
     executeQuoteSearch(param) {
-      console.log("Index.quoteSearch");
+      // TODO: Move to component layer
       if(param !== "") {
         this.store.query('quote', {symbol: param}).then((result) => {
           // Turn the array into a plain JS object for use by amCharts
           var resultArray = result.toArray();
           var pojoResultArray = JSON.parse(JSON.stringify(resultArray));
+          this.set('quoteList', pojoResultArray);
 
           // Set the data on the chart
           chartConfig.dataProvider = pojoResultArray;;

@@ -26,7 +26,7 @@ public class StockPriceResource {
 	/**
 	 * Return a list of historical quotes for a given stock symbol
 	 * If the symbol is not found, an Exception will be thrown up from this layer,
-	 * this could be imrpoved to return JSON-formatted error messages
+	 * this could be improved to return JSON-formatted error messages
 	 * @param symbol
 	 * @return
 	 */
