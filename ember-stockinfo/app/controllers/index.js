@@ -1,4 +1,21 @@
 import Ember from 'ember';
+var chartConfig = {
+            type: "serial",
+            categoryField: "date",
+            categoryAxis: {
+              labelFrequency: 2,
+              title: "Date"
+            },
+            valueAxes: [{
+              title: "Average Price"
+            }],
+            graphs: [{
+              valueField: "averagePrice",
+              type: "line",
+              balloonText: "[[category]]: <b>[[value]]</b>",
+              bullet: "round"
+            }]
+          };
 
 export default Ember.Controller.extend({
   actions: {
@@ -24,28 +41,11 @@ export default Ember.Controller.extend({
           var resultArray = result.toArray();
           var pojoResultArray = JSON.parse(JSON.stringify(resultArray));
 
-          // Build out the amChart
-          var chart = new AmCharts.AmSerialChart();
-          chart.dataProvider = pojoResultArray;
-          chart.categoryField = "date";
+          // Set the data on the chart
+          chartConfig.dataProvider = pojoResultArray;;
 
-          var categoryAxis = chart.categoryAxis;
-          categoryAxis.labelFrequency = 2;
-          categoryAxis.title = "Date";
-
-          var valueAxis = new AmCharts.ValueAxis();
-          valueAxis.title = "Average Price";
-          chart.valueAxes[0] = valueAxis;
-
-          var graph = new AmCharts.AmGraph();
-          graph.valueField = "averagePrice";
-          graph.type = "line";
-          graph.balloonText = "[[category]]: <b>[[value]]</b>";
-          graph.bullet = "round";
-          chart.addGraph(graph);
-
-          // Tightly coupled to the component name, look for a better solution
-          chart.write('chartdiv');
+          // Create the chart and write it to the div
+          AmCharts.makeChart("chartDiv", chartConfig);
         });
       }
     }
