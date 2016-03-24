@@ -33,6 +33,10 @@ export default Ember.Controller.extend({
           categoryAxis.labelFrequency = 2;
           categoryAxis.title = "Date";
 
+          var valueAxis = new AmCharts.ValueAxis();
+          valueAxis.title = "Average Price";
+          chart.valueAxes[0] = valueAxis;
+
           var graph = new AmCharts.AmGraph();
           graph.valueField = "averagePrice";
           graph.type = "line";
