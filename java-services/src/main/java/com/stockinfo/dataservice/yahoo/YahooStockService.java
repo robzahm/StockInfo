@@ -41,20 +41,20 @@ public class YahooStockService implements IHistoricalStockQuoteService {
 	public StockQuoteWrapper getStockHistory(String symbol, Date start, Date end) throws Exception {
 		// Build the Yahoo query with the correct inputs
 		String query = String.format(
-				"select * from yahoo.finance.historicaldata where symbol = \"%s\" and startDate = \"%s\" and endDate = \"%s\"",
-				symbol, dateFormatter.format(start), dateFormatter.format(end));
+			"select * from yahoo.finance.historicaldata where symbol = \"%s\" and startDate = \"%s\" and endDate = \"%s\"",
+			symbol, dateFormatter.format(start), dateFormatter.format(end));
 		
 		// Encode the URL, including replacing the + with %20 as an extra step
 		String encodedQuery = URLEncoder.encode(query, "UTF-8");
 		encodedQuery = encodedQuery.replace("+", "%20");
 		
-		// Build the URL
+		// Build the URL to the Yahoo data source
 		StringBuilder theUrl = new StringBuilder();
 		theUrl.append("https://query.yahooapis.com/v1/public/yql?q=");
 		theUrl.append(encodedQuery);
 		theUrl.append("&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=");
 		
-		// Submit the request to Yaho
+		// Submit the request to Yahoo
 		HttpGet request = new HttpGet(theUrl.toString());
 		HttpResponse response = httpClient.execute(request);
 		
