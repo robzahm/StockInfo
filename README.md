@@ -37,11 +37,14 @@ Ember Frontend
 ## Start the Services
 
 Start the Java server:
+* Ensure that port 8080 is not in use on your machine
 * Change into the java-services directory
 * Start the Java server (DropWizard): 'java -jar target/stockinfo-0.1.jar server stockinfo.yml'
 * Sample URL: http://localhost:8080/companies?name=App
+* Sample URL: http://localhost:8080/quotes?symbol=SHLM
 
 Start the Ember server:
+* Ensure that port 4200 is not in use on your machine
 * Change into the ember-stockinfo directory
 * 'ember server --proxy http://localhost:8080'
 
